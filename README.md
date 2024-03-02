@@ -1,24 +1,14 @@
-# README
+# Bucket
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project involves organizing tasks into categories. Categories contain various tasks, each with its own name, description, status, and the number of tasks within it. Tasks are defined by their name, description, status, and the category they belong to. Additionally, it incorporates User Authentication using the devise gem.
 
-Things you may want to cover:
+For instance, consider a category named "Event Planning," with the description "Tasks related to organizing the upcoming event." Within this category, tasks such as "Book venue" might be listed, accompanied by a description like "Ensure the venue can accommodate 100 guests comfortably." Task statuses can be either "Pending" or "Completed."
 
-* Ruby version
+---
 
-* System dependencies
+## Tech Stack
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Ruby on Rails: Full-stack framework with Ruby language
+- TailwindCSS: Utility-first CSS Framework
+- Render: Web service deployment
+- PostgreSQL: Database

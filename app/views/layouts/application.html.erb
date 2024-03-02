@@ -11,16 +11,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-<body class="prose">
-<% if user_signed_in? %>
-<%= link_to "All Buckets", categories_path%>
-<%#= link_to "All Tasks", category_tasks_path %>
-<%= link_to 'Log out', destroy_user_session_path, data: { "turbo-method": :delete} %>
-<% else %>
-<%= link_to 'Sign up', new_user_registration_path %>
-<%= link_to 'Log in', new_user_session_path %>
-
-<% end %>
+<body class="max-w-none h-screen">
+<%= render 'layouts/header' %>
 <%= yield %>
 </body>
 </html>
