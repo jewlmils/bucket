@@ -1,0 +1,9 @@
+<h1><%= @task.name %></h1>
+
+<p><%= @task.description %></p>
+
+<h3> Category: <%= @task.category.name %></h3>
+
+<h6> status: <%= @task.status %></h6>
+
+<%= link_to "Edit", edit_category_task_path(@category, @task) %>

@@ -1,0 +1,19 @@
+<h1><%= @category.name %></h1>
+<p><%= @category.description %></p>
+<%= link_to "Add Task", new_category_task_path(@category) %>
+
+<h3>Pending Tasks</h3>
+<ul>
+  <% @category.tasks_by_status("Pending").each do |task| %>
+    <li><%= link_to task.name, category_task_path(@category, task) %></li>
+  <% end %>
+</ul>
+
+<h3>Completed Tasks</h3>
+<ul>
+  <% @category.tasks_by_status("Completed").each do |task| %>
+    <li><%= link_to task.name, category_task_path(@category, task) %></li>
+  <% end %>
+</ul>
+
+<%= button_to "Edit category", edit_category_path(@category), method: :get %>
