@@ -1,4 +1,9 @@
-<h1><%= @category.name %></h1>
+
+
+<div class="mx-auto max-w-7xl px-4 py-12">
+    <div class="mx-auto max-w-4xl">
+<div class="mt-20">
+        <h1><%= @category.name %></h1>
 <p><%= @category.description %></p>
 <%= link_to "Add Task", new_category_task_path(@category) %>
 
@@ -17,3 +22,6 @@
 </ul>
 
 <%= button_to "Edit category", edit_category_path(@category), method: :get %>
+</div>
+      </div>
+      </div>

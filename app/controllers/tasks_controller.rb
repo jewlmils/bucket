@@ -1,11 +1,18 @@
 class TasksController < ApplicationController
     before_action :authenticate_user!
-    before_action :find_category
+    before_action :find_category, except: [:index]
     
-    def index
-      @pending_tasks = @category.tasks.get_by_status("Pending")
-      @completed_tasks = @category.tasks.get_by_status("Completed")
-    end
+    # def index
+    #   @pending_categories = current_user.categories.get_by_status("Pending")
+    #   @completed_categories = current_user.categories.get_by_status("Completed")
+      
+    #   # Fetching pending tasks for all categories
+    #   @pending_tasks = []
+    #   @pending_categories.each do |category|
+    #     @pending_tasks = category.tasks.get_by_status("Pending")
+    #   end
+    # end
+    
   
     def new
       @task = @category.tasks.build
@@ -14,6 +21,7 @@ class TasksController < ApplicationController
     def create
       @task = @category.tasks.build(task_params)
       @task.status = "Pending"
+      @task.user_id = current_user.id
       if @task.save
         @category.update_status
         redirect_to category_task_path(@category, @task)

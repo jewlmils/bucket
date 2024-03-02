@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :category
+  belongs_to :user
 
   def self.get_by_status(status)
     self.all.select do |task|

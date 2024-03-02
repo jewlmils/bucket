@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
       @empty_categories = current_user.categories.get_by_status("Empty")
       @pending_categories = current_user.categories.get_by_status("Pending")
       @completed_categories = current_user.categories.get_by_status("Completed")
+      @pending_tasks = current_user.tasks.where(status: "Pending")
     end
   
     def new
@@ -23,6 +24,7 @@ class CategoriesController < ApplicationController
     end
   
     def show
+      
     end
   
     def edit

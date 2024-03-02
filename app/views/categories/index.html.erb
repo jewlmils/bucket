@@ -1,25 +1,32 @@
-<h1>CATEGORIES LIST</h1>
-
-<%= button_to "Create category", new_category_path, method: :get %>
-
-<h3>Empty categories</h3>
-<ul>
-<% @empty_categories.each do |category| %>
-    <li><%= link_to category.name, category_path(category) %></li>
-<% end %>
-</ul>
-
-<h3>Pending categories</h3>
-<ul>
-<% @pending_categories.each do |category| %>
-    <li><%= link_to category.name, category_path(category) %></li>
-<% end %>
-</ul>
-
-<h3>Completed categories</h3>
-<ul>
-<% @completed_categories.each do |category| %>
-    <li><%= link_to category.name, category_path(category) %></li>
-<% end %>
-
-</ul>
+<div class="mx-auto max-w-7xl px-4 py-12">
+    <div class="mx-auto max-w-4xl">
+        <main class="mt-20"> <!-- Adjust top margin to accommodate fixed navbar -->
+            <h1>CATEGORIES LIST</h1>
+            <%= button_to "Create category", new_category_path, method: :get %>
+            <h3>Empty categories</h3>
+            <ul>
+                <% @empty_categories.each do |category| %>
+                <li><%= link_to category.name, category_path(category) %></li>
+                <% end %>
+            </ul>
+            <h3>Pending categories</h3>
+            <ul>
+                <% @pending_categories.each do |category| %>
+                <li><%= link_to category.name, category_path(category) %></li>
+                <% end %>
+            </ul>
+            <h3>Completed categories</h3>
+            <ul>
+                <% @completed_categories.each do |category| %>
+                <li><%= link_to category.name, category_path(category) %></li>
+                <% end %>
+            </ul>
+            <h3>Pending Tasks</h3>
+            <ul>
+              <% @pending_tasks.each do |task| %>
+                <li><%= link_to task.name, category_task_path(task.category, task) %></li>
+              <% end %>
+            </ul>
+        </main>
+    </div>
+</div>
