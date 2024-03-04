@@ -1,32 +1,66 @@
-<div class="mx-auto max-w-7xl px-4 py-12">
-    <div class="mx-auto max-w-4xl">
-        <main class="mt-20"> <!-- Adjust top margin to accommodate fixed navbar -->
-            <h1>CATEGORIES LIST</h1>
-            <%= button_to "Create category", new_category_path, method: :get %>
-            <h3>Empty categories</h3>
-            <ul>
-                <% @empty_categories.each do |category| %>
-                <li><%= link_to category.name, category_path(category) %></li>
-                <% end %>
-            </ul>
-            <h3>Pending categories</h3>
-            <ul>
-                <% @pending_categories.each do |category| %>
-                <li><%= link_to category.name, category_path(category) %></li>
-                <% end %>
-            </ul>
-            <h3>Completed categories</h3>
-            <ul>
-                <% @completed_categories.each do |category| %>
-                <li><%= link_to category.name, category_path(category) %></li>
-                <% end %>
-            </ul>
-            <h3>Pending Tasks</h3>
-            <ul>
-              <% @pending_tasks.each do |task| %>
-                <li><%= link_to task.name, category_task_path(task.category, task) %></li>
-              <% end %>
-            </ul>
-        </main>
-    </div>
+<div class="mx-auto max-w-7xl flex justify-center items-center h-screen">
+    <div class="flex gap-9">
+      <div class="w-full">
+        <div class="bg-white rounded-lg shadow p-6 flex items-center justify-between">
+          <div>
+            <h1 class="">Welcome to your Bucket <%= current_user.email %></h1>
+            <%= link_to(new_category_path, class: "select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-2 px-4 text-center align-middle font-sans text-md font-bold text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20") do %>
+              Create your Bucket
+              <i class="fa-solid fa-arrow-right"></i>
+            <% end %>
+          </div>
+          <%= image_tag "ppl-01.png", class: "w-36" %>
+        </div>
+
+        <div class="list-none mt-4 grid grid-cols-1 gap-6 lg:grid-cols-3 sm:grid-cols-2">  
+          <% current_user.categories.each do |category| %>
+            <li class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
+              <div class="flex w-full items-center justify-between space-x-6 p-6">
+                <div class="flex-1 truncate">
+                  <div class="flex items-center space-x-3">
+                    <div>
+                      <%= link_to category.name, category, class: "font-bold no-underline" %>
+                    </div>
+                  </div>
+                  <p class="mt-1 truncate text-sm text-gray-500"><%= category.description %></p>
+                </div>
+              </div>
+              <div class="-mt-px flex divide-x divide-gray-200">
+                <div class="flex w-0 flex-1">
+                  <%= link_to "Edit", edit_category_path(category), class: "no-underline relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500" %>
+                </div>
+                <div class="-ml-px flex w-0 flex-1">
+                  <%= link_to category_path(category), data: {"turbo-method": :delete}, class: "no-underline relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500" do %>
+                    <span class="text-red-700">Delete</span>
+                  <% end %>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="w-5/12">
+        <div class="flex flex-col bg-white px-4 py-2 max-w-sm rounded-lg shadow-md">
+          <% if @pending_tasks.present? %>
+          <h2>Pending Fish</h2>
+          <ul>
+           <% @pending_tasks.each do |task| %>
+            <li>
+              <%= link_to task.name, category_task_path(task.category, task) %> 
+              <span class="italic text-gray-500 text-sm"><%= task.created_at %></span>
+            </li>
+           <% end %>
+          </ul>
+          <% else %>
+          <div class="text-center">
+            <h2>no pending fish!</h2>
+            <h1>Good Job!</h1>
+            <%= image_tag "no fish-01.png", class: "w-36 mx-auto d-block" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div> 
 </div>

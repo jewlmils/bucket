@@ -13,7 +13,7 @@ class Category < ApplicationRecord
   def update_status
     if self.tasks == []  # If category has no tasks,
       self.status = "Empty"  # set status to "Empty".
-    elsif self.tasks.any? { |task| task.status == "Pending" }  # If any task is pending,
+    elsif self.tasks.any? { |task| task.status == "Pending" || [] }  # If any task is pending,
       self.status = "Pending"  # set status to "Pending".
     else  # Otherwise,
       self.status = "Completed"  # set status to "Completed".
