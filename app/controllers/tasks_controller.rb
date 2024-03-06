@@ -3,6 +3,8 @@ class TasksController < ApplicationController
   before_action :find_category
   before_action :find_task, only: [:edit, :update, :destroy]
 
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
   # Action to render form for creating a new task
   def new
     @task = @category.tasks.build
@@ -15,7 +17,7 @@ class TasksController < ApplicationController
     @task.user_id = current_user.id
     if @task.save
       @category.update_status
-      redirect_to category_task_path(@category, @task)
+      redirect_to category_task_path(@category, @task), notice: "Task was successfully created"
     else
       render :new
     end
@@ -23,24 +25,19 @@ class TasksController < ApplicationController
 
   # Action to display details of a task
   def show
-    @task = @category.tasks.find_by(id: params[:id])
+    @task = @category.tasks.find(params[:id])
   end
 
   # Action to render form for editing a task
   def edit
-    @task = Task.find_by(id: params[:id])
-    unless @task
-      flash[:error] = "Task not found."
-      redirect_to root_path
-    end
+    # No need to find task here, as it's already found in find_task method
   end
   
   # Action to handle updating a task
   def update
     if @task.update(task_params)
-      @category = @task.category
       @category.update_status
-      redirect_to category_task_path(@category, @task)
+      redirect_to category_task_path(@category, @task), notice: "Task was successfully updated"
     else
       render :edit
     end
@@ -50,24 +47,32 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     @category.update_status
-    redirect_to @task.category
+    redirect_to @task.category, notice: "Task was successfully destroyed"
   end
 
   private
 
   # Callback to find the category associated with the task
   def find_category
-    @category = Category.find_by(id: params[:category_id])
-    redirect_to root_path, flash[:error] = "Category not found." unless @category
+    @category = Category.find(params[:category_id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to categories_path, flash: { notice: "Category not found." }
   end
 
   # Callback to find the task
   def find_task
-    @task = current_user.tasks.find_by(id: params[:id])
+    @task = current_user.tasks.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to categories_path, flash: { notice: "Task not found." }
   end
 
   # Strong parameters for task creation and updating
   def task_params
     params.require(:task).permit(:name, :description, :category_id, :status)
+  end
+
+  # Method to handle ActiveRecord::RecordNotFound exceptions
+  def record_not_found
+    redirect_to categories_path, flash: { notice: "Record not found." }
   end
 end

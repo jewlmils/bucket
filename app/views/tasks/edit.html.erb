@@ -3,31 +3,11 @@
     <div class="space-y-8 divide-y divide-gray-200">
         <div>
             <div>
-                <h3 class="text-lg font-medium leading-6 text-gray-900">Edit Task</h3>
-                <p class="mt-1 text-sm text-gray-500">This form updates a task.</p>
+                <h2><%= @task.category.name %></h2>
+                <p class="text-lg font-medium leading-6 text-gray-500">This form updates a task.</p>
             </div>
         </div>
-        <%= form_for([@category, @task]) do |f| %>
-        <div class="mt-6">
-            <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
-            <%= f.text_field :name, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-        </div>
-        <div class="mt-6">
-            <%= f.label :description, class: "block text-sm font-medium text-gray-700" %>
-            <%= f.text_field :description, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-        </div>
-        <div class="mt-6">
-            <label class="block text-sm font-medium text-gray-700">Status</label>
-            <div class="flex items-center mt-2">
-                <%= f.check_box :status, {}, "Completed", "Pending" %> 
-                <span>Completed</span>
-            </div>
-        </div>
-        <div class="flex justify-end pt-5 gap-2">
-            <%= link_to 'Cancel', @task.category, class: "border no-underline text-center align-middle select-none text-gray-900 px-3 py-1 rounded hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block" %>
-            <%= f.submit class: "cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-normal px-3 py-1 rounded" %>
-        </div>
-        <% end %>
+        <%= render 'form' %>
     </div>
   </div>
 </div>

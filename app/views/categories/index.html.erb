@@ -1,10 +1,10 @@
-<div class="mx-auto max-w-7xl flex justify-center items-center h-screen">
-    <div class="flex gap-9">
+<div class="mx-auto max-w-7xl flex justify-center">
+    <div class="flex gap-9 mt-24">
       <div class="w-full">
         <div class="bg-white rounded-lg shadow p-6 flex items-center justify-between">
           <div>
             <h1 class="">Welcome to your Bucket <%= current_user.email %></h1>
-            <%= link_to(new_category_path, class: "select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-2 px-4 text-center align-middle font-sans text-md font-bold text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20") do %>
+            <%= link_to(new_category_path, class: "no-underline select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-2 px-4 text-center align-middle font-sans text-md font-bold text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20") do %>
               Create your Bucket
               <i class="fa-solid fa-arrow-right"></i>
             <% end %>
@@ -30,7 +30,7 @@
                   <%= link_to "Edit", edit_category_path(category), class: "no-underline relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500" %>
                 </div>
                 <div class="-ml-px flex w-0 flex-1">
-                  <%= link_to category_path(category), data: {"turbo-method": :delete}, class: "no-underline relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500" do %>
+                  <%= link_to category_path(category), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "no-underline relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500" do %>
                     <span class="text-red-700">Delete</span>
                   <% end %>
                 </div>
@@ -42,20 +42,21 @@
 
       <div class="w-5/12">
         <div class="flex flex-col bg-white px-4 py-2 max-w-sm rounded-lg shadow-md">
-          <% if @pending_tasks.present? %>
-          <h2>Pending Fish</h2>
+          <% if @priority_tasks.present? %>
+          <h2>Priority for today</h2>
           <ul>
-           <% @pending_tasks.each do |task| %>
+           <% @priority_tasks.each do |task| %>
             <li>
-              <%= link_to task.name, category_task_path(task.category, task) %> 
+              <%= link_to task.name, category_task_path(task.category, task), class: "no-underline" %> 
               <span class="italic text-gray-500 text-sm"><%= task.created_at %></span>
             </li>
            <% end %>
           </ul>
           <% else %>
           <div class="text-center">
-            <h2>no pending fish!</h2>
-            <h1>Good Job!</h1>
+            <h2>Great News!</h2>
+            <h1>You're all clear today!</h1>
+            <h3>Now you have plenty of time to tackle those pending tasks!</h3>
             <%= image_tag "no fish-01.png", class: "w-36 mx-auto d-block" %>
           </div>
           <% end %>

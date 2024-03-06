@@ -2,6 +2,9 @@ class Category < ApplicationRecord
   belongs_to :user  
   has_many :tasks  
 
+  validates :name, presence: true
+  validates :description, presence: true
+
   # Method to retrieve categories by status.
   def self.get_by_status(status)
     self.all.select do |category|

@@ -1,67 +1,43 @@
 <div class="mx-auto max-w-7xl px-4 py-12">
     <div class="mx-auto max-w-4xl">
-    <div class="mt-20">
-
-        <div class="flex justify-between gap-20">
-        <div>
-            <h1><%= @category.name %></h1>
-            <p><%= @category.description %></p>
-        </div>
-        <div class="flex">
-            <%= link_to new_category_task_path(@category), class: "h-12 w-36 select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-2 px-4 text-center align-middle font-sans text-md font-bold text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20"  do %>
-            Add Task
-            <i class="fa-solid fa-plus"></i>
-            <% end %>
-        </div>
-        </div>
-        </div>
-
-        <div class="flex gap-9">
-          <div class="py-2 w-full">
-            <h3>Pending Tasks</h3>
-            <% @category.tasks_by_status("Pending").each do |task| %>
-              <div class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow" style="margin-bottom: 0.5rem;">
-                <div class="flex w-full items-center justify-between space-x-6 p-6">
-                  <div class="flex-1 truncate">
-                    <div class="flex items-center space-x-3">
-                    <%= link_to task.name, category_task_path(@category, task), class: "font-bold no-underline" %>
-                    </div>
-                  </div>
-
-                  <div class="flex items-center space-x-3"> 
-                  <%= link_to category_task_path(@category, task), data: { turbo_method: :delete }, class: "font-bold red no-underline text-red-500" do %>
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                  <% end %>
-                  </div>
+        <div class="mt-20">
+            <div class="flex justify-between gap-20">
+                <div>
+                    <h1><%= @category.name %></h1>
+                    <p><%= @category.description %></p>
                 </div>
-              </div>
-            <% end %>
-          </div>
+                <div class="flex">
+                    <%= link_to new_category_task_path(@category), class: "no-underline h-12 w-36 select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-2 px-4 text-center align-middle font-sans text-md font-bold text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20" do %>
+                    Add Task
+                    <i class="fa-solid fa-plus"></i>
+                    <% end %>
+                </div>
+            </div>
+        </div>
 
-        
-          <div class="py-2 w-4/12">
-            <h3>Completed Tasks</h3>
-            <% @category.tasks_by_status("Completed").each do |task| %>
-              <div class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow" style="margin-bottom: 0.5rem;">
-                <div class="flex w-full items-center justify-between space-x-6 p-6">
+        <div class="py-2">
+          <% @category.tasks.each do |task| %>
+          <div class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow" style="margin-bottom: 0.5rem;">
+              <div class="flex w-full items-center justify-between space-x-6 p-6">
                   <div class="flex-1 truncate">
-                    <div class="flex items-center space-x-3">
-                    <%= link_to task.name, category_task_path(@category, task), class: "font-bold no-underline" %>
-                    </div>
+                      <div class="flex items-center space-x-3">
+                          <%= link_to task.name, category_task_path(@category, task), class: "font-bold no-underline" %>
+                          <div class="border border-black rounded-md px-2 py-1">
+                              <%= task.status%>
+                          </div>
+                      </div>
                   </div>
                   <div class="flex items-center space-x-3"> 
-                  <%= link_to category_task_path(@category, task), data: { turbo_method: :delete }, class: "font-bold red no-underline text-red-500" do %>
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                  <% end %>
+                    <%= link_to edit_category_task_path(@category, task) do %>
+                    <i class="fas fa-edit text-blue-500"></i>
+                    <% end %>
+                    <%= link_to category_task_path(@category, task), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                    <i class="fa fa-trash text-red-500" aria-hidden="true"></i>
+                    <% end %>
                   </div>
-                </div>
               </div>
-            <% end %>
           </div>
-
-    </div>
+          <% end %>
+        </div>
     </div>
 </div>
-  
-
-

@@ -11,6 +11,7 @@ gem "stimulus-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem 'devise'
+gem 'esbuild'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
@@ -26,3 +27,7 @@ group :test do
 end
 
 gem "tailwindcss-rails", "~> 2.3"
+gem 'minitest', '~> 5.14.4'
+gem 'standard', '~> 1.0.4'
+
+
