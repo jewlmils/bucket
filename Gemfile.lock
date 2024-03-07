@@ -109,9 +109,8 @@ GEM
       warden (~> 1.2.3)
     drb (2.2.1)
     erubi (1.12.0)
-    esbuild (0.2.1)
-      concurrent-ruby (~> 1.1.8)
-      rake (~> 13.0)
+    esbuild-rails (0.1.4)
+      rails (>= 6.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -304,7 +303,7 @@ DEPENDENCIES
   capybara
   debug
   devise
-  esbuild
+  esbuild-rails
   importmap-rails
   minitest (~> 5.14.4)
   pg (~> 1.1)

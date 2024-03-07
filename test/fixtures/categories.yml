@@ -1,13 +1,8 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+category_one:
+  id: 1
   name: MyString
   description: MyText
-  status: MyString
-  user: one
-
-two:
-  name: MyString
-  description: MyText
-  status: MyString
-  user: two
+  status: Pending
+  user_id: 1

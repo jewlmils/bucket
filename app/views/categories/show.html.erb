@@ -16,15 +16,14 @@
         </div>
 
         <div class="py-2">
+        <% if @category.tasks.present? %>
           <% @category.tasks.each do |task| %>
           <div class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow" style="margin-bottom: 0.5rem;">
               <div class="flex w-full items-center justify-between space-x-6 p-6">
                   <div class="flex-1 truncate">
                       <div class="flex items-center space-x-3">
                           <%= link_to task.name, category_task_path(@category, task), class: "font-bold no-underline" %>
-                          <div class="border border-black rounded-md px-2 py-1">
-                              <%= task.status%>
-                          </div>
+                          <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300"><%= task.status%></span>
                       </div>
                   </div>
                   <div class="flex items-center space-x-3"> 
@@ -38,6 +37,11 @@
               </div>
           </div>
           <% end %>
+        <% else %>
+        <div class="text-center italic text-gray-500">
+            <span>no task? hmmm... </span>
+        </div>
+        <% end %>
         </div>
     </div>
 </div>

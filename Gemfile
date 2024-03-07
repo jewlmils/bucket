@@ -11,7 +11,7 @@ gem "stimulus-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem 'devise'
-gem 'esbuild'
+gem 'esbuild-rails'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]

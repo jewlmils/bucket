@@ -12,17 +12,17 @@ class Category < ApplicationRecord
     end
   end
 
-  # Method to update the status of a category based on its tasks.
   def update_status
-    if self.tasks == []  # If category has no tasks,
-      self.status = "Empty"  # set status to "Empty".
-    elsif self.tasks.any? { |task| task.status == "Pending" || [] }  # If any task is pending,
-      self.status = "Pending"  # set status to "Pending".
-    else  # Otherwise,
-      self.status = "Completed"  # set status to "Completed".
+    if self.tasks.empty?
+      self.status = "Empty"
+    elsif self.tasks.any? { |task| task.status == "Pending" || task.status == "Priority" }
+      self.status = "Pending"
+    else
+      self.status = "Completed"
     end
-    self.save  # Save the changes.
+    self.save
   end
+  
 
   # Method to retrieve tasks of a category by status.
   def tasks_by_status(status)
