@@ -1,0 +1,16 @@
+<% if @priority_tasks.present? %>
+    <h2>Priority</h2>
+    <ul>
+     <% @priority_tasks.each do |task| %>
+      <li>
+        <%= link_to task.name, category_task_path(task.category, task), class: "no-underline" %> 
+        <span class="italic text-gray-500 text-sm"><%= task.created_at.localtime.strftime("%Y-%m-%d %I:%M:%S") %></span>
+      </li>
+     <% end %>
+    </ul>
+    <% else %>
+    <div class="text-center">
+      <h3>You're all clear today!</h3>
+      <%= image_tag "no fish-01.png", class: "w-36 mx-auto d-block" %>
+    </div>
+<% end %>
