@@ -8,6 +8,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -15,7 +16,7 @@
   </head>
 
 <body class="prose max-w-none h-screen bg-gray-100">
-  <%= render partial: 'shared/notifications', locals: { message: flash[:notice]} %>
+ <%= render 'shared/notifications' %>
   <%= render 'layouts/header' %>
   <%= yield %>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>

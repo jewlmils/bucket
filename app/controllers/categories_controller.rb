@@ -20,11 +20,14 @@ class CategoriesController < ApplicationController
     @category = current_user.categories.build(category_params)
     @category.status = "Empty"
     if @category.save
-      redirect_to category_path(@category), notice: "Category was successfully created"
+      redirect_to category_path(@category), notice: "Category was successfully created."
     else
-      render :new
+      if @category.errors[:name].include?("has already been taken")
+        flash[:alert] = "Category name has already been taken."
+      end
+      redirect_to categories_path
     end
-  end
+  end  
 
   def show
   end
@@ -35,7 +38,7 @@ class CategoriesController < ApplicationController
   def update
     if @category.update(category_params)
       @category.update_status
-      redirect_to category_path(@category), notice: "Category was successfully updated"
+      redirect_to category_path(@category), notice: "Category was successfully updated."
     else
       render :edit
     end
@@ -44,7 +47,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.tasks.destroy_all
     @category.destroy
-    redirect_to categories_path, notice: "Category was successfully destroyed"
+    redirect_to categories_path, notice: "Category was successfully deleted."
   end
 
   private
@@ -52,7 +55,7 @@ class CategoriesController < ApplicationController
   def set_category
     @category = current_user.categories.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to categories_path, flash: { notice: "Category not found." } 
+    redirect_to categories_path, flash: { alert: "Category not found." } 
   end
 
   def category_params

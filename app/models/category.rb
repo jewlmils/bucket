@@ -1,8 +1,8 @@
 class Category < ApplicationRecord
-  belongs_to :user  
-  has_many :tasks  
+  belongs_to :user
+  has_many :tasks
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :description, presence: true
 
   # Method to retrieve categories by status.
@@ -23,11 +23,4 @@ class Category < ApplicationRecord
     self.save
   end
   
-
-  # Method to retrieve tasks of a category by status.
-  def tasks_by_status(status)
-    self.tasks.select do |task|
-      task.status == status
-    end
-  end
 end
