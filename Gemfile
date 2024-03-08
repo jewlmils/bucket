@@ -27,7 +27,5 @@ group :test do
 end
 
 gem "tailwindcss-rails", "~> 2.3"
-gem 'minitest', '~> 5.14.4'
-gem 'standard', '~> 1.0.4'
 
 
