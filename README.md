@@ -23,12 +23,12 @@ _Bucket_ is designed to help you organize your tasks efficiently by allowing you
 ### 2.Login:
 
 - If you already have an account, simply log in using your email address and password.
-  ![login](images/login.png)\_
+  ![login](images/login.png)
 
 ### 3. Root Page:
 
 - Upon successful login, you'll be directed to the root page of the app.
-- Here, you'll see a list of categories along with an "Create Bucket" button.
+- Here, you'll see a list of categories along with a "Create Bucket" button.
 - On the right side, there's a container displaying the list of priorities for today.
   ![categories_path](images/categories_path.png)
 
