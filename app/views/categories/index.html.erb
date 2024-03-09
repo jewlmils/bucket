@@ -1,24 +1,20 @@
-<div class="mx-auto max-w-7xl flex justify-center">
-    <div class="flex gap-9 mt-24">
-      
-      <div class="w-full">
+<div class="flex justify-center h-full">
+  <div class="flex gap-9 mt-24 max-w-7xl w-full">
+    
+    <div class="w-full">
       <!-- intro message -->
-        <div class="bg-white rounded-lg shadow p-6 flex items-center justify-between">
-          <%= render 'intro' %>
-        </div>
+      <div class="bg-white rounded-lg shadow flex px-4 items-center justify-between">
+        <%= render 'intro' %>
+      </div> 
 
       <!-- list of categories -->
-        <div class="list-none mt-4 grid grid-cols-1 gap-6 lg:grid-cols-3 sm:grid-cols-2">  
-          <%= render 'categories' %>
-        </div>
-      </div>
+      <%= render 'categories' %>
+    </div>
 
-      <div class="w-5/12">
+    <div class="w-5/12">
       <!-- list of priorities -->
-        <div class="flex flex-col bg-white px-4 py-2 max-w-sm rounded-lg shadow-md">
-          <%= render 'priority' %>
-        </div>
-      </div>
+        <%= render 'priority' %>
+    </div>
 
-    </div> 
+  </div> 
 </div>

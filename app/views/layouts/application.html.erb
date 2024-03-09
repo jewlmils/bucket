@@ -15,10 +15,14 @@
     
   </head>
 
-<body class="prose max-w-none h-screen bg-gray-100">
-  <%= render 'shared/notifications' %>
+<body class="prose max-w-none h-screen overflow-hidden bg-gray-100">
   <%= render 'layouts/header' %>
+  <div class="notification-container overflow-hidden">
+    <%= render partial: 'shared/notifications' %>
+  </div>
   <%= yield %>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
+
+
 </html>

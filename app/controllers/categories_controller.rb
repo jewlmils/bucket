@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
     @pending_categories = current_user.categories.get_by_status("Pending")
     @completed_categories = current_user.categories.get_by_status("Completed")
     @priority_tasks = current_user.tasks.where(status: "Priority")
-    @categories = current_user.categories.all.order(created_at: :desc)
+    @categories = current_user.categories.all
   end
 
   def new
