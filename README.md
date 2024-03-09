@@ -63,6 +63,7 @@ _Bucket_ is designed to help you organize your tasks efficiently by allowing you
 - Here, you can edit the task details, including its status (pending or completed) and priority.
 - After updating the task, you'll be redirected back to the category page.
   ![task_edit](images/task_edit.png)
+  ![task_edit](images/status.png)
 
 ### 9. Viewing Priorities:
 
