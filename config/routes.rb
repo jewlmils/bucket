@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   devise_for :users 
   root 'categories#index'
 
-  get '*path', to: redirect('/categories', status: 302)
+  get '*path', to: redirect('/', status: 302)
 end

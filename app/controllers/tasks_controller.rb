@@ -3,8 +3,6 @@ class TasksController < ApplicationController
   before_action :set_category
   before_action :set_task, only: [:edit, :update, :destroy]
 
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-
   def new
     @task = @category.tasks.build
   end
@@ -23,6 +21,8 @@ class TasksController < ApplicationController
 
   def show
     @task = @category.tasks.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, flash: { alert: "Task not found." }
   end
 
   
@@ -50,20 +50,16 @@ class TasksController < ApplicationController
   def set_category
     @category = Category.find(params[:category_id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to categories_path, flash: { alert: "Category not found." }
+    redirect_to root_path, flash: { alert: "Category not found." }
   end
 
   def set_task
     @task = current_user.tasks.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to categories_path, flash: { alert: "Task not found." }
+    redirect_to root_path, flash: { alert: "Task not found." }
   end
 
   def task_params
     params.require(:task).permit(:name, :description, :category_id, :status)
-  end
-
-  def record_not_found
-    redirect_to categories_path, flash: { alert: "Record not found." }
   end
 end

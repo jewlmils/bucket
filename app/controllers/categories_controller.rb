@@ -2,14 +2,12 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-
   def index
     @empty_categories = current_user.categories.get_by_status("Empty")
     @pending_categories = current_user.categories.get_by_status("Pending")
     @completed_categories = current_user.categories.get_by_status("Completed")
     @priority_tasks = current_user.tasks.where(status: "Priority")
-    @categories = current_user.categories.all
+    @categories = current_user.categories.all.order(created_at: :desc)
   end
 
   def new
@@ -25,7 +23,7 @@ class CategoriesController < ApplicationController
       if @category.errors[:name].include?("has already been taken")
         flash[:alert] = "Category name has already been taken."
       end
-      redirect_to categories_path
+      redirect_to root_path
     end
   end  
 
@@ -47,7 +45,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.tasks.destroy_all
     @category.destroy
-    redirect_to categories_path, notice: "Category was successfully deleted."
+    redirect_to root_path, notice: "Category was successfully deleted."
   end
 
   private
@@ -55,7 +53,7 @@ class CategoriesController < ApplicationController
   def set_category
     @category = current_user.categories.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to categories_path, flash: { alert: "Category not found." } 
+    redirect_to root_path, flash: { alert: "Category not found." } 
   end
 
   def category_params
