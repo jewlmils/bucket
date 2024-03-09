@@ -26,7 +26,7 @@ class TasksTest < ApplicationSystemTestCase
     select "Completed", from: "Status" 
     click_on "Update Task"
 
-    assert_text "Task was successfully updated"
+    assert_text "Task was successfully updated."
   end
 
   test 'destroy a task' do
@@ -36,7 +36,7 @@ class TasksTest < ApplicationSystemTestCase
       find("a[href='#{category_task_path(@category, @task)}'][data-turbo-method='delete']").click
     end
 
-    assert_text "Task was successfully destroyed"
+    assert_text "Task was successfully deleted."
   end
 
   private
@@ -52,7 +52,7 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   def visit_category_page
-    visit categories_url
+    visit root_path
     click_on @category.name
   end
 

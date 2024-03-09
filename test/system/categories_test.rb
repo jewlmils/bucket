@@ -8,12 +8,12 @@ class CategoriesTest < ApplicationSystemTestCase
   end
 
   test 'visiting the index' do
-    visit categories_url
+    visit root_path
     assert_selector 'h1', text: "Welcome to your Bucket #{@user.email}"
   end
 
   test 'creates a new category' do
-    visit categories_url
+    visit root_path
     click_on "Create Bucket"
 
     fill_in_category_form("Hello Test", "Hello Test Desc")
@@ -23,7 +23,7 @@ class CategoriesTest < ApplicationSystemTestCase
   end
 
   test 'updates a category' do
-    visit categories_url
+    visit root_path
     click_on "Edit"
 
     fill_in_category_form("#{@category.name}edit-test", "#{@category.description}edit-test")
@@ -33,13 +33,13 @@ class CategoriesTest < ApplicationSystemTestCase
   end
 
   test 'destroy a category' do
-    visit categories_url
+    visit root_path
 
     accept_confirm do
       click_on "Delete", match: :first
     end
 
-    assert_text "Category was successfully destroyed"
+    assert_text "Category was successfully deleted."
   end
 
   test 'view a category' do
@@ -51,7 +51,6 @@ class CategoriesTest < ApplicationSystemTestCase
   
   def login
     visit root_path
-    click_on "Log in"
     fill_in "Email", with: @user.email
     fill_in "Password", with: "hello123"
     click_on "Submit"
