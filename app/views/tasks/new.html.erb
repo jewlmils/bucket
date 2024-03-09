@@ -16,8 +16,8 @@
             <%= f.text_field :description, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
         </div>
         <div class="flex justify-end pt-5 gap-2">
-            <%= link_to 'Cancel', @task.category, class: "border no-underline text-center align-middle select-none text-gray-900 px-3 py-1 rounded hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block" %>
-            <%= f.submit class: "cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-normal px-3 py-1 rounded" %>
+            <%= link_to 'Cancel', @task.category, class: "btn-secondary" %>
+            <%= f.submit class: "cursor-pointer bg-purple-900 hover:bg-purple-700 text-white font-bold px-3 py-1 rounded-lg" %>
         </div>
         <% end %>
       </div>
