@@ -4,12 +4,12 @@
                 <%= link_to "Bucket", categories_path, class: "no-underline text-2xl font-bold text-gray-800"%>
                 <div class="hidden md:flex items-center space-x-4">
                     <% if user_signed_in? %>
-                    <%= link_to "Create Bucket", new_category_path, class: "no-underline px-4 py-2 font-sans text-md text-center text-gray-900 align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block" %>
-                    <%= link_to 'Log out', destroy_user_session_path, data: { "turbo-method": :delete}, class: "no-underline select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-2 px-4 text-center align-middle font-sans text-md font-bold text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20" %>
+                    <%= link_to "Create Bucket", new_category_path, class: "btn-secondary" %>
+                    <%= link_to 'Log out', destroy_user_session_path, data: { "turbo-method": :delete}, class: "btn-main" %>
                     
                     <% else %>
-                    <%= link_to 'Log in', new_user_session_path, class: "no-underline px-4 py-2 font-sans text-md text-center text-gray-900 align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block" %>
-                    <%= link_to 'Sign up', new_user_registration_path, class: "no-underline select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-2 px-4 text-center align-middle font-sans text-md font-bold text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20" %>
+                    <%= link_to 'Log in', new_user_session_path, class: "btn-secondary" %>
+                    <%= link_to 'Sign up', new_user_registration_path, class: "btn-main" %>
                     <% end %>
                 </div>
             </div>

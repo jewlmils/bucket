@@ -1,8 +1,12 @@
-<div>
-    <h1 class="">Welcome to your Bucket <%= current_user.email %></h1>
-    <%= link_to(new_category_path, class: "no-underline select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-2 px-4 text-center align-middle font-sans text-md font-bold text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20") do %>
-    Create your Bucket
-    <i class="fa-solid fa-arrow-right"></i>
-    <% end %>
+<div class="relative">
+    <div class="absolute -top-16 right-4 z-1">
+        <%= image_tag "intro.png", class: "w-56" %>
+    </div>
+    <div class="p-5 bg-white">
+        <h1 class="">Welcome to your Bucket <%= current_user.email %></h1>
+        <%= link_to(new_category_path, class: "btn-main") do %>
+            Create your Bucket
+            <i class="fa-solid fa-arrow-right"></i>
+        <% end %>
+    </div>
 </div>
-<%= image_tag "ppl-01.png", class: "w-36" %>

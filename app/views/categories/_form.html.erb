@@ -1,35 +1,35 @@
-<%= form_with model: @category, class: "space-y-8 divide-gray-200" do |f| %>
-  <div class="space-y-8 divide-y divide-gray-200">
-    <div class="pt-8">
-       <div>
-        <% if @category.new_record? %>
-          <h3 class="text-lg font-medium leading-6 text-gray-900">Add Bucket</h3>
-          <p class="mt-1 text-sm text-gray-500">This form creates a new bucket.</p>
-        <% else %>
-          <h3 class="text-lg font-medium leading-6 text-gray-900">Edit Bucket</h3>
-          <p class="mt-1 text-sm text-gray-500">This form edits the Bucket.</p>
+<div class="px-4 flex justify-center items-center h-screen"> <!-- Added h-screen to ensure container takes full height -->
+  <div class="mt-2 sm:w-full sm:max-w-lg relative"> <!-- Removed sm:mx-auto to center the container -->
+    <div class="bg-white px-8 py-14 shadow sm:rounded-lg sm:px-10 relative">
+      <div>
+        <%= form_with model: @category do |f| %>
+        <div>
+          <% if @category.new_record? %>
+          <h1 class="m-0 text-center font-bold tracking-tight text-5xl text-gray-900">Add Bucket</h1>
+          <p class="text-center mt-0">This form creates a new bucket.</p>
+          <% else %>
+          <h3 class="m-0 text-center font-bold tracking-tight text-5xl text-gray-900">Edit Bucket</h3>
+          <p class="text-center mt-0">This form updates the Bucket.</p>
+          <% end %>
+        </div>
+        <div class="mb-4">
+          <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_field :name, class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10 " %>
+        </div>
+        <div class="mb-4">
+          <%= f.label :description, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_area :description, class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10 " %>
+        </div>
+        <div class="flex justify-end pt-5 gap-2">
+          <%= link_to 'Cancel', categories_path, class: "btn-secondary" %>
+          <%= f.submit class: "cursor-pointer bg-purple-900 hover:bg-purple-700 text-white font-bold px-3 py-1 rounded-lg" %>
+        </div>
         <% end %>
       </div>
-    </div>
-    
-    <div class="mt-6 grid grid-cols-1 gapy-6 gap-x-4 sm:grid-cols-6">
-      <div class="sm:col-span-6">
-        <%= f.label :name %>
-        <div class="mt-1">
-          <%= f.text_field :name, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+        <div class="-bottom-10 right-25 absolute">
+          <%= image_tag "plant cat-01.png", class: "w-44" %>
         </div>
-      </div>
-      <div class="sm:col-span-6">
-        <%= f.label :description %>
-        <div class="mt-1">
-          <%= f.text_area :description, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
-        </div>
-      </div>
     </div>
   </div>
+</div>
 
-  <div class="flex justify-end pt-5 gap-2">
-    <%= link_to 'Cancel', categories_path, class: "border no-underline text-center align-middle select-none text-gray-900 px-3 py-1 rounded hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block" %>
-    <%= f.submit class: "cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-normal px-3 py-1 rounded" %>
-  </div>
-<% end %>

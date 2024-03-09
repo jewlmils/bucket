@@ -1,30 +1,29 @@
 <div class="mx-auto max-w-7xl px-4 py-12">
     <div class="mx-auto max-w-4xl">
-        <div class="mt-20">
-            <div class="flex justify-between gap-20">
-                <div>
+        <div class="mt-14">
+            <div class="bg-white rounded-lg p-6">
+                <div class="flex justify-between">
                     <h1><%= @category.name %></h1>
-                    <p><%= @category.description %></p>
+                    <div>
+                        <%= link_to new_category_task_path(@category), class: "btn-main" do %>
+                            Add Task
+                            <i class="fa-solid fa-plus"></i>
+                        <% end %>
+                    </div>
                 </div>
-                <div class="flex">
-                    <%= link_to new_category_task_path(@category), class: "no-underline h-12 w-36 select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-2 px-4 text-center align-middle font-sans text-md font-bold text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20" do %>
-                    Add Task
-                    <i class="fa-solid fa-plus"></i>
-                    <% end %>
-                </div>
+                <p class="m-0"><%= @category.description %></p>
             </div>
         </div>
 
-        <div class="py-2">
-        <% if @category.tasks.present? %>
-          <% @category.tasks.each do |task| %>
-            <%= render partial: 'tasks/task', locals: { task: task } %>
-          <% end %>
-        <% else %>
-        <div class="text-center italic text-gray-500">
-            <span>no task? hmmm... </span>
-        </div>
-        <% end %>
+        <div class="overflow mt-4 mb-8 py-2 px-4 max-h-[calc(100vh-24rem)]">
+            <% if @category.tasks.present? %>
+                <% @category.tasks.each do |task| %>
+                    <%= render partial: 'tasks/task', locals: { task: task } %>
+                <% end %>
+            <% else %>
+                <h3 class="text-gray-500 italic text-center">no task? hmmm... </h3>
+                <%= image_tag "card cat-01.png", class: "w-48 mx-auto d-block" %>
+            <% end %>
         </div>
     </div>
 </div>

@@ -1,13 +1,12 @@
-<div class="mx-auto max-w-7xl px-4 py-12">
-  <div class="mx-auto max-w-3xl">
-    <div class="space-y-8 divide-y divide-gray-200">
-        <div>
-            <div>
-                <h2><%= @task.category.name %></h2>
-                <p class="text-lg font-medium leading-6 text-gray-500">This form updates a task.</p>
-            </div>
-        </div>
+<div class="px-4 flex justify-center items-center h-screen"> <!-- Added h-screen to ensure container takes full height -->
+  <div class="mt-2 sm:w-full sm:max-w-lg relative"> <!-- Removed sm:mx-auto to center the container -->
+    <div class="bg-white px-8 py-14 shadow sm:rounded-lg sm:px-10 relative">
+      <div>
         <%= form_with(model: [@category, @task]) do |f| %>
+        <div>
+          <h1 class="m-0 text-center font-bold tracking-tight text-5xl text-gray-900"><%= @task.category.name %></h1>
+          <p class="text-center mt-0">This form updates a task.</p>
+        </div>
         <div class="mt-6">
             <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
             <%= f.text_field :name, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
@@ -18,13 +17,18 @@
         </div>
         <div class="mt-6">
             <%= f.label :status, class: "block text-sm font-medium text-gray-700" %>
-            <%= f.select :status, [['Pending'], ['Completed' ], ['Priority']], {}, { class: 'block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' } %>
+            <%= f.select :status, [['Pending'], ['Completed' ], ['Priority']], {}, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
         </div>
         <div class="flex justify-end pt-5 gap-2">
             <%= link_to 'Cancel', @task.category, class: "border no-underline text-center align-middle select-none text-gray-900 px-3 py-1 rounded hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block" %>
             <%= f.submit class: "cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-normal px-3 py-1 rounded" %>
         </div>
         <% end %>
+      </div>
+        <div class="-bottom-10 right-25 absolute">
+          <%= image_tag "plant cat-01.png", class: "w-44" %>
+        </div>
     </div>
   </div>
 </div>
+

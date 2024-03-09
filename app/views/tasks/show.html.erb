@@ -4,13 +4,16 @@
     <div class="flex items-center justify-between">
         <p class=" text-gray-500">
             <i class="fa fa-angle-double-left" aria-hidden="true"></i>
-            <%= link_to @task.category.name, @task.category %> / <%= @task.name %>
+            <%= link_to @task.category.name, @task.category, class: "no-underline font-bold text-purple-900 hover:underline" %> / <%= @task.name %>
         </p>
-        <%= link_to "Edit", edit_category_task_path(@category, @task), class: "no-underline select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-2 px-4 text-center align-middle font-sans text-md font-bold text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20"%>
+        <%= link_to "Edit", edit_category_task_path(@category, @task), class: "btn-main"%>
     </div>
 
-    <h1 class="mt-4"><%= @task.name %></h1>
-    <p><%= @task.description %></p>
+<div class="bg-white rounded-lg shadow-lg p-6">
+  <h1 class="mt-4"><%= @task.name %></h1>
+  <p><%= @task.description %></p>
+</div>
+
     
 </div>
 </div>
