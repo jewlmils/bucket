@@ -10,6 +10,11 @@ _Bucket_ is designed to help you organize your tasks efficiently by allowing you
 - TailwindCSS: Utility-first CSS Framework
 - Render: Web service deployment
 - PostgreSQL: Database
+- Device: Secure user authentication.
+
+## Testing
+
+- MiniTest System Tests: Ensuring reliability.
 
 ---
 
