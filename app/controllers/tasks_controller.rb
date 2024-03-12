@@ -21,14 +21,11 @@ class TasksController < ApplicationController
 
   def show
     @task = @category.tasks.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, flash: { alert: "Task not found." }
   end
 
-  
   def edit
   end
- 
+
   def update
     if @task.update(task_params)
       @category.update_status
@@ -38,7 +35,6 @@ class TasksController < ApplicationController
     end
   end
 
-  
   def destroy
     @task.destroy
     @category.update_status
@@ -47,18 +43,17 @@ class TasksController < ApplicationController
 
   private
 
+  # Sets the category based on the provided category_id parameter
   def set_category
     @category = Category.find(params[:category_id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, flash: { alert: "Category not found." }
   end
 
+  # Sets the task based on the provided id parameter
   def set_task
     @task = current_user.tasks.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, flash: { alert: "Task not found." }
   end
 
+  # Defines permitted parameters for task creation and updating
   def task_params
     params.require(:task).permit(:name, :description, :category_id, :status)
   end
