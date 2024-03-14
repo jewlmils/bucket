@@ -7,13 +7,6 @@ class Category < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :description, presence: true
 
-  # Method to retrieve categories by status.
-  def self.get_by_status(status)
-    self.all.select do |category|
-      category.status == status
-    end
-  end
-
   # Method to update the status of the category based on its associated tasks.
   def update_status
     if self.tasks.empty?
