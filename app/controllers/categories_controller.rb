@@ -46,12 +46,11 @@ class CategoriesController < ApplicationController
 
   private
 
-  # Sets the category based on the provided id parameter
+
   def set_category
     @category = current_user.categories.find(params[:id])
   end
 
-  # Defines permitted parameters for category creation and updating
   def category_params
     params.require(:category).permit(:name, :description)
   end

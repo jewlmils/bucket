@@ -1,13 +1,10 @@
 class Category < ApplicationRecord
-  # Associations
   belongs_to :user
   has_many :tasks
 
-  # Validations
   validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :description, presence: true
 
-  # Method to update the status of the category based on its associated tasks.
   def update_status
     if self.tasks.empty?
       self.status = "Empty"
@@ -18,5 +15,5 @@ class Category < ApplicationRecord
     end
     self.save
   end
-  
+
 end
