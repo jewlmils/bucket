@@ -18,4 +18,5 @@ class Category < ApplicationRecord
     end
     self.save
   end
+  
 end
