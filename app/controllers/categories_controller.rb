@@ -2,9 +2,6 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    @empty_categories = current_user.categories.get_by_status("Empty")
-    @pending_categories = current_user.categories.get_by_status("Pending")
-    @completed_categories = current_user.categories.get_by_status("Completed")
     @priority_tasks = current_user.tasks.where(status: "Priority")
     @categories = current_user.categories.all.order(created_at: :desc)
   end
